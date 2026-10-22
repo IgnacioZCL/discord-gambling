@@ -1,0 +1,14 @@
+services:
+  discord-gambling:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    container_name: discord-gambling
+    restart: unless-stopped
+    env_file:
+      - .env
+    volumes:
+      # Persist SQLite economy database across container rebuilds/restarts.
+      - ./data:/app/data
+    environment:
+      - NODE_ENV=production
